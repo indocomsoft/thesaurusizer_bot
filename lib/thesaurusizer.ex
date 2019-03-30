@@ -33,7 +33,7 @@ defmodule Thesaurusizer do
               Regex.match?(~r/^\p{Lu}.*/, word) ->
                 String.capitalize(new_word)
 
-              Regex.match?(~r/^\p(Lu)*$/, word) ->
+              Regex.match?(~r/^\p{Lu}*$/, word) ->
                 String.upcase(new_word)
 
               true ->
