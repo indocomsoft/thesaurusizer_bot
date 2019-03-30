@@ -23,8 +23,7 @@ defmodule Thesaurusizer.MixProject do
   defp deps do
     [
       {:ex_gram, "~> 0.6"},
-      {:httpoison, "~> 1.4"},
-      {:jason, "~> 1.1"},
+      {:exwordnet, "~> 0.1"},
       {:dialyxir, "~> 1.0.0-rc.4", only: :dev, runtime: false},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
