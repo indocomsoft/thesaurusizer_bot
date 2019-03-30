@@ -14,7 +14,6 @@ defmodule Thesaurusizer do
   end
 
   defp process_word(word) when is_binary(word) do
-    IO.inspect(word)
     sanitised_word = String.replace(word, ~r/[\p{P}\p{S}]/, "")
     folded_word = String.downcase(sanitised_word)
 
