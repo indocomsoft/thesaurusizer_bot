@@ -35,6 +35,9 @@ defmodule Thesaurusizer do
               Regex.match?(~r/^\p{Lu}*$/, word) ->
                 String.upcase(new_word)
 
+              Regex.match?(~r/^\p{Ll}*$/, word) ->
+                String.downcase(new_word)
+
               true ->
                 new_word
             end
