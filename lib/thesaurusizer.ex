@@ -11,29 +11,26 @@ defmodule Thesaurusizer do
     passage
     |> String.split(delimiter)
     |> Enum.map(fn word ->
-      Task.async(fn ->
-        sanitised_word = String.replace(word, ~r/[\p{P}\p{S}]/, "")
+      sanitised_word = String.replace(word, ~r/[\p{P}\p{S}]/, "")
 
-        if sanitised_word in @stop_words do
-          word
-        else
-          synonyms = get_synonyms(sanitised_word)
+      if sanitised_word in @stop_words do
+        word
+      else
+        synonyms = get_synonyms(sanitised_word)
 
-          synonyms
-          |> Enum.filter(&(not String.contains?(&1, " ")))
-          |> case do
-            [] ->
-              word
+        synonyms
+        |> Enum.filter(&(not String.contains?(&1, " ")))
+        |> case do
+          [] ->
+            word
 
-            one_word_synonyms ->
-              one_word_synonyms
-              |> Enum.random()
-              |> (&String.replace(word, sanitised_word, &1)).()
-          end
+          one_word_synonyms ->
+            one_word_synonyms
+            |> Enum.random()
+            |> (&String.replace(word, sanitised_word, &1)).()
         end
-      end)
+      end
     end)
-    |> Enum.map(&Task.await/1)
     |> Enum.join(delimiter)
   end
 
