@@ -17,7 +17,7 @@ defmodule Thesaurusizer do
         if sanitised_word in @stop_words do
           word
         else
-          {:ok, synonyms} = Thesaurusizer.API.get_synonyms(sanitised_word)
+          synonyms = get_synonyms(sanitised_word)
 
           synonyms
           |> Enum.filter(&(not String.contains?(&1, " ")))
@@ -35,5 +35,15 @@ defmodule Thesaurusizer do
     end)
     |> Enum.map(&Task.await/1)
     |> Enum.join(delimiter)
+  end
+
+  defp get_synonyms(word) do
+    case System.cmd("ruby", ["priv/synonyms.rb", word]) do
+      {output, 0} ->
+        Jason.decode!(output)
+
+      _ ->
+        raise "Something goes wrong with the ruby script. Check ruby and the rwordnet gem is installed"
+    end
   end
 end

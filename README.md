@@ -1,6 +1,8 @@
 # Thesaurusizer
 
-**TODO: Add description**
+## Requirement
+1. Elixir 1.8
+1. Ruby, with the `rwordnet` gem installed (`gem install rwordnet`).
 
 ## Installation
 
