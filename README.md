@@ -2,7 +2,7 @@
 
 ## Requirement
 1. Elixir 1.8
-1. Ruby, with the `rwordnet` gem installed (`gem install rwordnet`).
+1. tar and xz-utils
 
 ## Installation
 
