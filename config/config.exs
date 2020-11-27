@@ -31,4 +31,9 @@ use Mix.Config
 
 config :tesla, adapter: Tesla.Adapter.Hackney
 
-import_config "secrets.exs"
+token = System.get_env("TOKEN")
+
+case token do
+  nil -> import_config "secrets.exs"
+  x when is_binary(x) -> config :ex_gram, token: token
+end
