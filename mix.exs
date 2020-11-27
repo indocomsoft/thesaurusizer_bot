@@ -24,6 +24,7 @@ defmodule Thesaurusizer.MixProject do
     [
       {:ex_gram, "~> 0.8"},
       {:exwordnet, "~> 0.1"},
+      {:jason, "~> 1.0"},
       {:tesla, "~> 1.2"},
       {:hackney, "~> 1.15"},
       {:dialyxir, "~> 1.0.0-rc.4", only: :dev, runtime: false},
